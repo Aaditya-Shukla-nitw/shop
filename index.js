@@ -8,6 +8,44 @@ class Item {
 
 }
 
+let darkMode = localStorage.getItem('darkMode') === 'enabled';
+
+function toggleDarkMode() {
+darkMode = !darkMode;
+localStorage.setItem('darkMode', darkMode ? 'enabled' : 'disabled');
+document.querySelector('.hidden').style.backgroundColor = darkMode ? 'black' : 'white';
+document.querySelector('img').style.filter = darkMode ? 'invert(1)' : 'invert(0)';
+document.querySelectorAll('a').forEach(item => {
+  item.style.color = darkMode ? 'white' : 'black';
+});
+document.querySelector('.ban').style.filter = darkMode ? 'invert(1)' : 'invert(0)';
+document.querySelector('body').style.backgroundColor = darkMode ? 'black' : 'white';
+document.querySelector('h2').style.color = darkMode ? 'white' : 'black';
+
+document.querySelectorAll('.card').forEach(item => {
+  item.style.color = darkMode ? 'white' : 'black';
+  item.style.borderColor = darkMode ? 'white' : 'black';
+});
+document.querySelector('.banner').style.backgroundColor = darkMode ? 'black' : 'white';
+
+}
+
+if (darkMode) {
+document.querySelector('.hidden').style.backgroundColor = 'black';
+document.querySelector('img').style.filter = 'invert(1)';
+document.querySelectorAll('a').forEach(item => {
+  item.style.color = 'white';
+});
+document.querySelector('.ban').style.filter = 'invert(1)';
+document.querySelector('body').style.backgroundColor = 'black';
+document.querySelector('h2').style.color = 'white';
+
+document.querySelectorAll('.card').forEach(item => {
+  item.style.color = 'white';
+  item.style.borderColor = 'white';
+});
+document.querySelector('.banner').style.backgroundColor = darkMode ? 'black' : 'white';
+}
 // Example usage:
 // Assuming you have a button with an onclick attribute set to item.addToCart(event)
 // <button onclick="item.addToCart(event)">Add to Cart</button>
