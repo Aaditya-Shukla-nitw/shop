@@ -29,18 +29,34 @@ function addToCart(event) {
     saveCart();
     console.log('Item added to cart');
 }
+function total(){
+    let total = 0;
+    cart.forEach(item => {
+        total += parseFloat((item.price).substring(1, item.price.length));
+    });
+    
+    let tot = document.querySelector('.total');
+    tot.innerHTML = `TOTAL: $${total}`;
+}
 function remove(event){
     let parentDiv = event.target.parentElement.parentElement;
     let itemName = parentDiv.querySelector('.item-name').textContent;
 
     cart = cart.filter(cartItem => cartItem.name !== itemName);
     saveCart();
+    let cards = document.querySelector('.cards');
+    cards.innerHTML = '';
     console.log('Item removed from cart');
     loadCart();
+    total();
 }
 function loadCart(){
     console.log('Loading cart: ', cart);
     let cards = document.querySelector('.cards');
+    if(cart.length === 0){
+        cards.innerHTML = '<h3 class="empty">Your cart is empty</h3>';
+        return;
+    }
     cart.forEach(item => {
         let card = document.createElement('div');
         card.innerHTML = `
@@ -54,6 +70,8 @@ function loadCart(){
           <button onclick="remove(event)">Remove</button>
         </center>
         </div>`;
+        card.className="card";
         cards.appendChild(card);
     });
+    total();
 }
