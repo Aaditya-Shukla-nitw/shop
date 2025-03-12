@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <script src="index.js"></script>
   </head>
   <body>
@@ -16,13 +17,14 @@
         <ul class="nav-list">
           <li><a href="index.html">Home</a></li>
           <li><a href="cart.html">Cart</a></li>
-          <li><a href="contact.html">Contact</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><button id="dark-mode-toggle" onclick="toggleDarkMode()">Dark Mode</button></li>
         </ul>
       </div>
       <div class="pull"><center>||</center></div>
     </div>
     <div class="banner">
-      <img src="Burberry-Logo.png" alt="banner" />
+      <img class="ban" src="Burberry-Logo.png" alt="banner" />
     </div>
     <h2>Latest Collections</h2>
     <div class="cards">
@@ -77,6 +79,46 @@
 
     </div>
     
+    <script>
+      let darkMode = localStorage.getItem('darkMode') === 'enabled';
+
+      function toggleDarkMode() {
+      darkMode = !darkMode;
+      localStorage.setItem('darkMode', darkMode ? 'enabled' : 'disabled');
+      document.querySelector('.hidden').style.backgroundColor = darkMode ? 'black' : 'white';
+      document.querySelector('img').style.filter = darkMode ? 'invert(1)' : 'invert(0)';
+      document.querySelectorAll('a').forEach(item => {
+        item.style.color = darkMode ? 'white' : 'black';
+      });
+      document.querySelector('.ban').style.filter = darkMode ? 'invert(1)' : 'invert(0)';
+      document.querySelector('body').style.backgroundColor = darkMode ? 'black' : 'white';
+      document.querySelector('h2').style.color = darkMode ? 'white' : 'black';
+      
+      document.querySelectorAll('.card').forEach(item => {
+        item.style.color = darkMode ? 'white' : 'black';
+        item.style.borderColor = darkMode ? 'white' : 'black';
+      });
+      document.querySelector('.banner').style.backgroundColor = darkMode ? 'black' : 'white';
+      
+      }
+
+      if (darkMode) {
+      document.querySelector('.hidden').style.backgroundColor = 'black';
+      document.querySelector('img').style.filter = 'invert(1)';
+      document.querySelectorAll('a').forEach(item => {
+        item.style.color = 'white';
+      });
+      document.querySelector('.ban').style.filter = 'invert(1)';
+      document.querySelector('body').style.backgroundColor = 'black';
+      document.querySelector('h2').style.color = 'white';
+      
+      document.querySelectorAll('.card').forEach(item => {
+        item.style.color = 'white';
+        item.style.borderColor = 'white';
+      });
+      document.querySelector('.banner').style.backgroundColor = darkMode ? 'black' : 'white';
+      }
+  </script>
     <script src="index.js"></script>
     </body>
   </body>
